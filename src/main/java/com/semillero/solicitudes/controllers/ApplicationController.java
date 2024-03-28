@@ -2,30 +2,34 @@ package com.semillero.solicitudes.controllers;
 
 import com.semillero.solicitudes.persistence.entities.SolicitudEntity;
 import com.semillero.solicitudes.services.SolicitudService;
-import com.semillero.solicitudes.services.interfaces.ISolicitud;
+import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/requests")
 public class ApplicationController {
 
-    ISolicitud solicitudService;
 
     @Autowired
-    public ApplicationController(SolicitudService solicitudService) {
-        this.solicitudService = solicitudService;
-    }
+    public SolicitudService solicitudService;
 
-    @GetMapping(value="/health-check")
+   /* @GetMapping(value="/health-check")
     private String healthCheck() {
         return "OK";
+    }*/
+
+    @GetMapping(value = "/getRequests")
+    public List<SolicitudEntity> getRequests() {
+        List<SolicitudEntity> response = this.solicitudService.getAll();
+        return response;
     }
 
-    @GetMapping(value = "/getAll")
-    private List<SolicitudEntity> getAll() {
-        return this.solicitudService.getAll();
+    @PostMapping(value = "/saveRequests")
+    public SolicitudEntity saveRequests(@RequestBody SolicitudEntity solicitud){
+       /* entities = return new SolicitudEntity<>(entities, HttpStatus.SC_OK);*/
+        return this.solicitudService.saveRequests(solicitud);
     }
 }

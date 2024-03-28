@@ -1,6 +1,7 @@
 package com.semillero.solicitudes.services;
 
 import com.semillero.solicitudes.persistence.SolicitudRepository;
+import com.semillero.solicitudes.persistence.entities.EmpleadoEntity;
 import com.semillero.solicitudes.persistence.entities.SolicitudEntity;
 import com.semillero.solicitudes.services.interfaces.ISolicitud;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,4 +22,10 @@ public class SolicitudService implements ISolicitud {
     public List<SolicitudEntity> getAll() {
         return solicitudRepository.findAll();
     }
+
+    public SolicitudEntity saveRequests(SolicitudEntity solicitud){
+
+        return solicitudRepository.save(solicitud);
+    }
+
 }

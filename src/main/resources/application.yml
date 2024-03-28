@@ -1,6 +1,10 @@
 spring:
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
   datasource:
-    url: jdbc:mysql:/{HOST}:{PORT}/{DB_NAME}
-    username: {USERNAME}
-    password: {PASSWORD}
+    url: jdbc:mysql://localhost:3306/db_caso_autoservicio
+    username: root
+    password: Joel2009
     driver-class-name: com.mysql.cj.jdbc.Driver

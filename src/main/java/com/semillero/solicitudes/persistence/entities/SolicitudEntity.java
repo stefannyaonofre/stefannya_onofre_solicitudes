@@ -1,44 +1,46 @@
 package com.semillero.solicitudes.persistence.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
-@Table(name = "SOLICITUD")
+@Getter
+@Setter
+@Table(name = "solicitud_vaciones")
 public class SolicitudEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "nm_id_solicitud")
     private int id;
 
-    @Basic(optional = false)
-    @Column(name = "NAME")
-    private String name;
+    @Column(name = "nm_dias_solicita")
+    private int dias_solicitado;
 
-    @Basic(optional = false)
-    @Column(name = "DESCRIPTION")
-    private String description;
+    @Column(name = "fe_fecha_inicio")
+    private LocalDate fecha_inicio;
 
-    public int getId() {
-        return id;
-    }
+    @Column(name = "fe_fecha_fin")
+    private LocalDate fecha_fin;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    @Column(name = "fe_fecha_retorna")
+    private LocalDate fecha_retorno;
 
-    public String getName() {
-        return name;
-    }
+    @Column(name = "ds_estado", length = 10)
+    private String estado;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    @Column(name = "ds_observaciones", length = 60)
+    private String observaciones;
 
-    public String getDescription() {
-        return description;
-    }
+    @Column(name = "fe_fecha_creacion")
+    private LocalDate fecha_creacion;
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
+    @JoinColumn(name = "nm_id_usuario")
+    private UsuarioEntity usuario;
+
 }

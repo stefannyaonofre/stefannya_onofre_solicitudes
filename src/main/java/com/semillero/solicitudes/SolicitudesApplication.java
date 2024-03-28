@@ -11,7 +11,6 @@ import javax.swing.*;
 import java.security.SecurityPermission;
 
 @SpringBootApplication
-@EnableAutoConfiguration
 @EntityScan("com.semillero.solicitudes.persistence")
 @EnableJpaRepositories("com.semillero.solicitudes.persistence")
 public class SolicitudesApplication {
