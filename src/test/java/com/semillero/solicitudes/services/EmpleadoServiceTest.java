@@ -46,7 +46,6 @@ public class EmpleadoServiceTest {
             List<EmpleadoEntity> response= empleadoService.getAll();
             Assertions.assertTrue(response.isEmpty());
         }
-
     }
 
     @Test
@@ -61,7 +60,6 @@ public class EmpleadoServiceTest {
     public void cuando_el_repositorio_no_agrega_un_nuevo_empleado(){
         EmpleadoEntity empleado = new EmpleadoEntity();
         Mockito.when(empleadoRepository.save(empleado)).thenThrow(new RuntimeException("No se puede guardar el nuevo empleado"));
-
         try {
             EmpleadoEntity response = empleadoService.saveEmployee(empleado);
             Assertions.fail("Se esperaba que el método saveEmployee lanzara una excepción");
@@ -69,5 +67,4 @@ public class EmpleadoServiceTest {
             Assertions.assertEquals("No se puede guardar el nuevo empleado", e.getMessage());
         }
     }
-
 }
