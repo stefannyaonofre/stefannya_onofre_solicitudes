@@ -6,6 +6,7 @@ import com.semillero.solicitudes.services.interfaces.IEmpleado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +20,11 @@ public class EmpleadoService implements IEmpleado {
 
     @Override
     public List<EmpleadoEntity>getAll() {
-        return empleadoRepository.findAll();
+        try{
+            return empleadoRepository.findAll();
+        }catch(Exception e){
+            return new ArrayList<>();
+        }
     }
 
     public EmpleadoEntity saveEmployee(EmpleadoEntity empleado){
